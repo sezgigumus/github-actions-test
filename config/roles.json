@@ -1,6 +1,7 @@
 [
   {
     "id": "9b7df574-a304-4119-a1de-04e30bbff654",
+    "name": "Role 1",
     "permissions": [
       "advertise.bids.list",
       "advertise.bids.update",
@@ -9,6 +10,18 @@
     "isLegacy": false,
     "entityType": "organization",
     "accountType": "service_account",
+    "correlationId": "ceff5b8a-5a10-43a2-91c3-b992c87b05c6",
+    "description": "Grants read and update access to bid endpoints of Advertising Management API",
+    "isHidden": false,
+    "suiteId": "GROWTH"
+  },
+  {
+    "id": "9b7df574-a304-4119-a1de-04e30bbff654",
+    "name": "Role 2",
+    "permissions": [],
+    "isLegacy": false,
+    "entityType": "organization",
+    "accountType": "user",
     "correlationId": "ceff5b8a-5a10-43a2-91c3-b992c87b05c6",
     "description": "Grants read and update access to bid endpoints of Advertising Management API",
     "isHidden": false,
