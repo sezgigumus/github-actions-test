@@ -1,14 +1,17 @@
 [
   {
-    "id": "20c1953c-aef0-4254-9d7f-54cfab18ad77",
-    "name": "Asset Manager Admin",
-    "permissions": [],
+    "id": "9b7df574-a304-4119-a1de-04e30bbff654",
+    "permissions": [
+      "advertise.bids.list",
+      "advertise.bids.update",
+      "advertise.audience_pinpointer.get"
+    ],
     "isLegacy": false,
-    "entityType": "project",
-    "accountType": "user",
-    "description": "Allows full access to AMC resources",
-    "correlationId": "15ea77eb-32cc-48d6-8427-bc1d87341a8e",
+    "entityType": "organization",
+    "accountType": "service_account",
+    "correlationId": "ceff5b8a-5a10-43a2-91c3-b992c87b05c6",
+    "description": "Grants read and update access to bid endpoints of Advertising Management API",
     "isHidden": false,
-    "suiteId": "AMC"
+    "suiteId": "GROWTH"
   }
 ]
