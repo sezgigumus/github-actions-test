@@ -1,4 +1,4 @@
-{
+[
   {
     "id": "20c1953c-aef0-4254-9d7f-54cfab18ad77",
     "name": "Asset Manager Admin",
@@ -11,4 +11,4 @@
     "isHidden": false,
     "suiteId": "AMC"
   }
-}
+]
