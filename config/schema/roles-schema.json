@@ -1,63 +1,62 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "array",
-  "items": 
-    {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "permissions": {
-          "type": "array",
-          "items": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "string"
-            },
-            {
-              "type": "string"
-            }
-          ]
-        },
-        "isLegacy": {
-          "type": "boolean"
-        },
-        "entityType": {
-          "type": "string"
-        },
-        "accountType": {
-          "type": "string"
-        },
-        "correlationId": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "isHidden": {
-          "type": "boolean"
-        },
-        "suiteId": {
-          "type": "string"
-        }
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
       },
-      "required": [
-        "id",
-        "name",
-        "permissions",
-        "isLegacy",
-        "entityType",
-        "accountType",
-        "correlationId",
-        "description",
-        "isHidden",
-        "suiteId"
-      ]
-    }
+      "name": {
+        "type": "string"
+      },
+      "permissions": {
+        "type": "array",
+        "items": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "isLegacy": {
+        "type": "boolean"
+      },
+      "entityType": {
+        "type": "string"
+      },
+      "accountType": {
+        "type": "string"
+      },
+      "correlationId": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "isHidden": {
+        "type": "boolean"
+      },
+      "suiteId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "permissions",
+      "isLegacy",
+      "entityType",
+      "accountType",
+      "correlationId",
+      "description",
+      "isHidden",
+      "suiteId"
+    ]
+  }
 }
