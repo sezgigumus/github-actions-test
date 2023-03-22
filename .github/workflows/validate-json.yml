@@ -6,7 +6,10 @@ jobs:
   verify-json-validation:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 
+          
       - name: Validate JSON
         uses: cardinalby/schema-validator-action@v2
         with:
