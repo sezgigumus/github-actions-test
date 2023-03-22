@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Validate JSON
-        uses: docker://orrosenblatt/validate-json-action:latest
-        env:
-          INPUT_SCHEMA: /config/schema/roles.schema
-          INPUT_JSONS: /config/roles.json
+        uses: cardinalby/schema-validator-action@v2
+        with:
+          file: 'config/roles.json'
+          schema: 'config/schema/roles.schema'
