@@ -10,5 +10,15 @@
     "correlationId": "15ea77eb-32cc-48d6-8427-bc1d87341a8e",
     "isHidden": false,
     "suiteId": "AMC"
+  },
+  {
+    "name": "Asset Manager Admin",
+    "permissions": [],
+    "isLegacy": "false",
+    "entityType": "project",
+    "accountType": "user",
+    "description": "Allows full access to AMC resources",
+    "isHidden": false,
+    "suiteId": "AMC"
   }
 ]
