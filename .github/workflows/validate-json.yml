@@ -11,4 +11,4 @@ jobs:
         uses: cardinalby/schema-validator-action@v2
         with:
           file: 'config/roles.json'
-          schema: 'config/schema/roles.schema'
+          schema: 'config/schema/roles-schema.json'
