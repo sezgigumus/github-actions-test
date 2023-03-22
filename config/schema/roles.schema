@@ -1,0 +1,14 @@
+{
+  {
+    "id": "guid",
+    "name": "string",
+    "permissions": [],
+    "isLegacy": false,
+    "entityType": "project",
+    "accountType": "string",
+    "description": "string",
+    "correlationId": "guid",
+    "isHidden": false,
+    "suiteId": "string"
+  }
+}
