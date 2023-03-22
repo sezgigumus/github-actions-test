@@ -1,14 +1,64 @@
-[
-  {
-    "id": "guid",
-    "name": "string",
-    "permissions": [],
-    "isLegacy": false,
-    "entityType": "project",
-    "accountType": "string",
-    "description": "string",
-    "correlationId": "guid",
-    "isHidden": false,
-    "suiteId": "string"
-  }
-]
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "permissions": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "isLegacy": {
+          "type": "boolean"
+        },
+        "entityType": {
+          "type": "string"
+        },
+        "accountType": {
+          "type": "string"
+        },
+        "correlationId": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "isHidden": {
+          "type": "boolean"
+        },
+        "suiteId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "permissions",
+        "isLegacy",
+        "entityType",
+        "accountType",
+        "correlationId",
+        "description",
+        "isHidden",
+        "suiteId"
+      ]
+    }
+  ]
+}
