@@ -1,4 +1,4 @@
-{
+[
   {
     "id": "guid",
     "name": "string",
@@ -11,4 +11,4 @@
     "isHidden": false,
     "suiteId": "string"
   }
-}
+]
