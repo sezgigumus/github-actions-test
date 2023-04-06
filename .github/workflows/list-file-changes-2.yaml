@@ -39,20 +39,20 @@ jobs:
         id: check_rbac_data_renamed
         if: contains(steps.migration_files.outputs.renamed_files, 'rbac-data-sync') == false
         run: |
-          echo "renamed=false" >> $GITHUB_ENV
-          echo "rbac-data-sync file has been renamed."
+          echo "renamed=false" >> $GITHUB_OUTPUT
+          echo "rbac-data-sync file has not been renamed."
           
       - name: Run a step if migration data files was changed
         id: check_migration_data_changed
         if: steps.migration_files.outputs.any_changed == 'true'
         run: |
-          echo "changed=true" >> $GITHUB_ENV
+          echo "changed=true" >> $GITHUB_OUTPUT
           echo "Migration data files changed"
           
       - name: Run a step if rbac-data-sync-*.js was modified
         if: steps.check_rbac_data_renamed.outputs.renamed == false && contains(steps.migration_files.outputs.modified_files, 'rbac-data-sync')
         run: |
-          echo "rbac_data_sync_modified=true" >> $GITHUB_ENV
+          echo "rbac_data_sync_modified=true" >> $GITHUB_OUTPUT
           echo "rbac-data-sync file has been modified."    
           
       - name: Bumping migration number
