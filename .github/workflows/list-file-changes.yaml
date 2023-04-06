@@ -1,0 +1,50 @@
+name: List file changes
+
+on:
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - "src/migrations/data/roles.json"
+      - "src/migrations/data/permissions.json"
+      - "src/migrations/data/service-accounts.json"
+      - "src/migrations/data/global-policies.json"
+      - "src/migrations/rbac-data-sync-*.js"
+
+jobs:
+  list_changes:
+    name: List file changes
+    runs-on: [ubuntu-latest]
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+      pull-requests: read # needed for PR event trigger
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Filter migration data files
+        uses: dorny/paths-filter@v2
+        id: migration_files
+        with:
+          # base: master #remove before changing event trigger
+          filters: |
+            data_changed:
+              - 'src/migrations/data/roles.json'
+              - 'src/migrations/data/permissions.json'
+              - 'src/migrations/data/service-accounts.json'     
+              - 'src/migrations/data/global-policies.json'
+              - modified: 'src/migrations/rbac-data-sync-**.js'
+            sync_renamed:
+              - renamed: 'src/migrations/rbac-data-sync-**.js'
+
+      - name: Print data changed
+        if: steps.migration_files.outputs.data_changed == 'true'
+        run: |
+          echo "Data changed"
+
+      - name: Print rbac-data-sync renamed
+        if: steps.migration_files.outputs.sync_renamed == 'true'
+        run: |
+          echo "rbac-data-sync is renamed"
