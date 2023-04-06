@@ -38,9 +38,11 @@ jobs:
       - name: Run a step if rbac-data-sync-*.js was renamed
         id: check_rbac_data_renamed
         if: |
-           !contains(steps.migration_files.outputs.renamed_files, 'rbac-data-sync')
+           (contains(steps.migration_files.outputs.renamed_files, 'rbac-data-sync')
+           || (contains(steps.migration_files.outputs.deleted_files, 'rbac-data-sync') &&
+              contains(steps.migration_files.outputs.modified_files, 'rbac-data-sync')))
         run: |
-          echo "renamed=false" >> $GITHUB_OUTPUT
+          echo "renamed=true" >> $GITHUB_OUTPUT
           echo "rbac-data-sync file has not been renamed."
     
       - name: Run a step if migration data files was changed
