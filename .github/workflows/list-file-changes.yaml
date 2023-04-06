@@ -35,9 +35,9 @@ jobs:
               - 'src/migrations/data/permissions.json'
               - 'src/migrations/data/service-accounts.json'     
               - 'src/migrations/data/global-policies.json'
-              - modified: 'src/migrations/**'
+              - modified: 'src/migrations/rbac-data-sync-*.js'
             sync_renamed:
-              - renamed: 'src/migrations/**'
+              - renamed: 'src/migrations/rbac-data-sync-*.js'
 
       - name: Print data changed
         if: steps.migration_files.outputs.data_changed == 'true'
