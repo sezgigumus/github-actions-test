@@ -40,7 +40,7 @@ jobs:
         if: |
            (contains(steps.migration_files.outputs.renamed_files, 'rbac-data-sync')
            || (contains(steps.migration_files.outputs.deleted_files, 'rbac-data-sync') &&
-              contains(steps.migration_files.outputs.modified_files, 'rbac-data-sync')))
+              contains(steps.migration_files.outputs.added_files, 'rbac-data-sync')))
         run: |
           echo "renamed=true" >> $GITHUB_OUTPUT
           echo "rbac-data-sync file has not been renamed."
