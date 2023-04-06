@@ -36,32 +36,34 @@ jobs:
             src/migrations/rbac-data-sync-*.js
 
       - name: Run a step if rbac-data-sync-*.js was renamed
+        id: check_rbac_data_renamed
         if: contains(steps.migration_files.outputs.renamed_files, 'rbac-data-sync')
         run: |
-          echo "rbac_data_sync_renamed=true" >> $GITHUB_ENV
+          echo "renamed=true" >> $GITHUB_ENV
           echo "rbac-data-sync file has been renamed."
           
       - name: Run a step if migration data files was changed
+        id: check_migration_data_changed
         if: steps.migration_files.outputs.any_changed == 'true'
         run: |
-          echo "data_changed=true" >> $GITHUB_ENV
+          echo "changed=true" >> $GITHUB_ENV
           echo "Migration data files changed"
           
       - name: Run a step if rbac-data-sync-*.js was modified
-        if: env.rbac_data_sync_renamed != true && contains(steps.migration_files.outputs.modified_files, 'rbac-data-sync')
+        if: steps.check_rbac_data_renamed.outputs.renamed != true && contains(steps.migration_files.outputs.modified_files, 'rbac-data-sync')
         run: |
           echo "rbac_data_sync_modified=true" >> $GITHUB_ENV
           echo "rbac-data-sync file has been modified."    
           
       - name: Bumping migration number
-        if: env.rbac_data_sync_renamed != true && env.data_changed == true
+        if: steps.check_rbac_data_renamed.outputs.renamed != true && steps.check_migration_data_changed.outputs.changed == true
         working-directory: ./src/migrations/
         run: |
          echo "Bumping migration number"
          mv rbac-data-sync-*.js rbac-data-sync-$(($(echo rbac-data-sync-*.js | grep -oE '[0-9]+')+1)).js
 
       - name: Commit renamed migration file
-        if: env.rbac_data_sync_renamed != true && env.data_changed == true
+        if: steps.check_rbac_data_renamed.outputs.renamed != true && steps.check_migration_data_changed.outputs.changed == true
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
            commit_message: bump migration number on rbac-data-sync file
