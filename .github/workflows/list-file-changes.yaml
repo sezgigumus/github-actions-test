@@ -48,3 +48,8 @@ jobs:
         if: steps.migration_files.outputs.sync_renamed == 'true'
         run: |
           echo "rbac-data-sync is renamed"
+          
+      - name: Print rbac-data-sync renamed
+        if: steps.migration_files.outputs.data_changed == 'true' && steps.migration_files.outputs.sync_renamed == 'false'
+        run: |
+          echo "rbac-data-sync is renaming"          
