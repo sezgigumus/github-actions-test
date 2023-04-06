@@ -9,7 +9,7 @@ on:
       - "src/migrations/data/permissions.json"
       - "src/migrations/data/service-accounts.json"
       - "src/migrations/data/global-policies.json"
-      - "src/migrations/rbac-data-sync-*.js"
+      - "src/migrations/rbac-data-sync-**.js"
 
 jobs:
   list_changes:
@@ -35,9 +35,9 @@ jobs:
               - 'src/migrations/data/permissions.json'
               - 'src/migrations/data/service-accounts.json'     
               - 'src/migrations/data/global-policies.json'
-              - modified: 'src/migrations/rbac-data-sync-**.js'
+              - modified: 'src/migrations/**'
             sync_renamed:
-              - renamed: 'src/migrations/rbac-data-sync-**.js'
+              - renamed: 'src/migrations/**'
 
       - name: Print data changed
         if: steps.migration_files.outputs.data_changed == 'true'
