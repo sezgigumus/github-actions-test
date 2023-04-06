@@ -54,7 +54,7 @@ jobs:
           echo "rbac-data-sync file has been modified."    
           
       - name: Bumping migration number
-        if: env.data_changed
+        if: env.rbac_data_sync_renamed != true && env.data_changed
         run: |
           echo "Bumping migration number"
           
