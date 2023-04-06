@@ -9,7 +9,7 @@ on:
       - "src/migrations/data/permissions.json"
       - "src/migrations/data/service-accounts.json"
       - "src/migrations/data/global-policies.json"
-      - "src/migrations/rbac-data-sync-**.js"
+      - "src/migrations/rbac-data-sync-*.js"
 
 jobs:
   list_changes:
