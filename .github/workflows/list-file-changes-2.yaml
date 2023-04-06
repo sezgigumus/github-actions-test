@@ -42,7 +42,7 @@ jobs:
           echo "rbac-data-sync file has been renamed."
           
       - name: Run a step if migration data files was changed
-        if: env.rbac_data_sync_renamed != true && steps.migration_files.outputs.any_changed == 'true'
+        if: steps.migration_files.outputs.any_changed == 'true'
         run: |
           echo "data_changed=true" >> $GITHUB_ENV
           echo "Migration data files changed"
