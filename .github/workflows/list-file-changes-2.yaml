@@ -55,7 +55,7 @@ jobs:
       - name: Run a step if rbac-data-sync-*.js was modified
         id: check_rbac_data_modified 
         if: |
-          (steps.check_rbac_data_renamed.outputs.renamed == 'false' && contains(steps.migration_files.outputs.modified_files, 'rbac-data-sync'))
+          (steps.check_rbac_data_renamed.outputs.renamed != 'true' && contains(steps.migration_files.outputs.modified_files, 'rbac-data-sync'))
         run: |
           echo "modified=true" >> $GITHUB_OUTPUT
           echo "rbac-data-sync file has been modified."    
@@ -68,7 +68,7 @@ jobs:
 
       - name: Bumping migration number
         if: |
-          (steps.check_rbac_data_renamed.outputs.renamed == 'false' && steps.check_migration_data_changed.outputs.changed == 'true')
+          (steps.check_rbac_data_renamed.outputs.renamed != 'true' && steps.check_migration_data_changed.outputs.changed == 'true')
         working-directory: ./src/migrations/
         run: |
          echo "Bumping migration number"
@@ -76,7 +76,7 @@ jobs:
 
       - name: Commit renamed migration file
         if: |
-          (steps.check_rbac_data_renamed.outputs.renamed == 'false' && steps.check_migration_data_changed.outputs.changed == 'true')
+          (steps.check_rbac_data_renamed.outputs.renamed != 'true' && steps.check_migration_data_changed.outputs.changed == 'true')
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
            commit_message: bump migration number on rbac-data-sync file
