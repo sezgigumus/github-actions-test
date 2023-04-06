@@ -35,21 +35,21 @@ jobs:
               - 'src/migrations/data/permissions.json'
               - 'src/migrations/data/service-accounts.json'     
               - 'src/migrations/data/global-policies.json'
+            sync_modified:
               - modified: 'src/migrations/rbac-data-sync-*.js'
-            sync_renamed:
-              - renamed: 'src/migrations/*.js'
 
       - name: Print data changed
         if: steps.migration_files.outputs.data_changed == 'true'
         run: |
           echo "Data changed"
 
-      - name: Print rbac-data-sync renamed
-        if: steps.migration_files.outputs.sync_renamed == 'true'
+      - name: Print rbac-data-sync modified
+        if: steps.migration_files.outputs.sync_modified == 'true'
         run: |
           echo "rbac-data-sync is renamed"
           
-      - name: Print rbac-data-sync renaming
-        if: steps.migration_files.outputs.data_changed == 'true' && steps.migration_files.outputs.sync_renamed == 'false'
+      - name: List all changed files
         run: |
-          echo "rbac-data-sync is renaming"          
+          for file in ${{ steps.migration_files.outputs.sync_modified_files }}; do
+            echo "$file was changed"
+          done 
