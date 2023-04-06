@@ -54,13 +54,14 @@ jobs:
           echo "rbac-data-sync file has been modified."    
           
       - name: Bumping migration number
+        if: env.rbac_data_sync_renamed != true && env.data_changed
         working-directory: ./src/migrations/
         run: |
          echo "Bumping migration number"
          mv rbac-data-sync-*.js rbac-data-sync-$(($(echo rbac-data-sync-*.js | grep -oE '[0-9]+')+1)).js
 
       - name: Commit renamed migration file
-        if: success()
+        if: env.rbac_data_sync_renamed != true && env.data_changed
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
            commit_message: bump migration number on rbac-data-sync file
