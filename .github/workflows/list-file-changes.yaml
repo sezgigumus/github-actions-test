@@ -37,7 +37,7 @@ jobs:
               - 'src/migrations/data/global-policies.json'
               - modified: 'src/migrations/rbac-data-sync-*.js'
             sync_renamed:
-              - renamed: 'src/migrations/rbac-data-sync-*.js'
+              - renamed: 'src/migrations/*.js'
 
       - name: Print data changed
         if: steps.migration_files.outputs.data_changed == 'true'
