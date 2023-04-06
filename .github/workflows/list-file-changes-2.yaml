@@ -37,9 +37,9 @@ jobs:
 
       - name: Run a step if rbac-data-sync-*.js was renamed
         id: check_rbac_data_renamed
-        if: contains(steps.migration_files.outputs.renamed_files, 'rbac-data-sync')
+        if: contains(steps.migration_files.outputs.renamed_files, 'rbac-data-sync') == false
         run: |
-          echo "renamed=true" >> $GITHUB_ENV
+          echo "renamed=false" >> $GITHUB_ENV
           echo "rbac-data-sync file has been renamed."
           
       - name: Run a step if migration data files was changed
@@ -50,20 +50,20 @@ jobs:
           echo "Migration data files changed"
           
       - name: Run a step if rbac-data-sync-*.js was modified
-        if: steps.check_rbac_data_renamed.outputs.renamed != true && contains(steps.migration_files.outputs.modified_files, 'rbac-data-sync')
+        if: steps.check_rbac_data_renamed.outputs.renamed == false && contains(steps.migration_files.outputs.modified_files, 'rbac-data-sync')
         run: |
           echo "rbac_data_sync_modified=true" >> $GITHUB_ENV
           echo "rbac-data-sync file has been modified."    
           
       - name: Bumping migration number
-        if: steps.check_rbac_data_renamed.outputs.renamed != true && steps.check_migration_data_changed.outputs.changed == true
+        if: steps.check_rbac_data_renamed.outputs.renamed == false && steps.check_migration_data_changed.outputs.changed == true
         working-directory: ./src/migrations/
         run: |
          echo "Bumping migration number"
          mv rbac-data-sync-*.js rbac-data-sync-$(($(echo rbac-data-sync-*.js | grep -oE '[0-9]+')+1)).js
 
       - name: Commit renamed migration file
-        if: steps.check_rbac_data_renamed.outputs.renamed != true && steps.check_migration_data_changed.outputs.changed == true
+        if: steps.check_rbac_data_renamed.outputs.renamed == false && steps.check_migration_data_changed.outputs.changed == true
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
            commit_message: bump migration number on rbac-data-sync file
