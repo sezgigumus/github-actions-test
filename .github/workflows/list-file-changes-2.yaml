@@ -28,6 +28,7 @@ jobs:
         id: migration_files
         uses: tj-actions/changed-files@v35
         with:
+          write_output_files: true
           files: |
             src/migrations/data/roles.json
             src/migrations/data/permissions.json
