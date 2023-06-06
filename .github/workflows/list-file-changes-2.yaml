@@ -66,19 +66,19 @@ jobs:
           echo "steps.check_migration_data_changed.outputs.changed: ${{steps.check_migration_data_changed.outputs.changed}}"
           echo "steps.check_rbac_data_modified.outputs.modified: ${{steps.check_rbac_data_modified.outputs.modified}}"
 
-      - name: Bumping migration number
-        if: |
-          (steps.check_rbac_data_renamed.outputs.renamed != 'true' && steps.check_migration_data_changed.outputs.changed == 'true')
-        working-directory: ./src/migrations/
-        run: |
-         echo "Bumping migration number"
-         mv rbac-data-sync-*.js rbac-data-sync-$(($(echo rbac-data-sync-*.js | grep -oE '[0-9]+')+1)).js
+#       - name: Bumping migration number
+#         if: |
+#           (steps.check_rbac_data_renamed.outputs.renamed != 'true' && steps.check_migration_data_changed.outputs.changed == 'true')
+#         working-directory: ./src/migrations/
+#         run: |
+#          echo "Bumping migration number"
+#          mv rbac-data-sync-*.js rbac-data-sync-$(($(echo rbac-data-sync-*.js | grep -oE '[0-9]+')+1)).js
 
-      - name: Commit renamed migration file
-        if: |
-          (steps.check_rbac_data_renamed.outputs.renamed != 'true' && steps.check_migration_data_changed.outputs.changed == 'true')
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-           commit_message: bump migration number on rbac-data-sync file
-           file_pattern: "src/migrations/rbac-data-sync-*.js"
+#       - name: Commit renamed migration file
+#         if: |
+#           (steps.check_rbac_data_renamed.outputs.renamed != 'true' && steps.check_migration_data_changed.outputs.changed == 'true')
+#         uses: stefanzweifel/git-auto-commit-action@v4
+#         with:
+#            commit_message: bump migration number on rbac-data-sync file
+#            file_pattern: "src/migrations/rbac-data-sync-*.js"
            
