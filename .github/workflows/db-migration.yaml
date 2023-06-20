@@ -5,6 +5,8 @@ on:
     branches:
       - 'main'
       
+concurrency: db-migration-prd     
+      
 jobs:
   # Confirmation step - prd
   confirm-db-migration-prd:
