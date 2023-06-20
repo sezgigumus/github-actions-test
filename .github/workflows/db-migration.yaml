@@ -1,0 +1,17 @@
+name: RBAC Data Migration
+
+on:
+  push:
+    branches:
+      - 'main'
+      
+jobs:
+  # Confirmation step - prd
+  confirm-db-migration-prd:
+    name: Confirm db migration in prd
+    runs-on: [self-hosted]
+    environment: db-migration-prd
+    steps:
+      - name: Confirm deployment
+        run: |
+          echo "Production DB migration confirmed"      
