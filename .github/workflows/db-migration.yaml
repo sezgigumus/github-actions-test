@@ -11,7 +11,7 @@ jobs:
   # Confirmation step - prd
   confirm-db-migration-prd:
     name: Confirm db migration in prd
-    runs-on: [self-hosted]
+    runs-on: [ubuntu-latest]
     environment: db-migration-prd
     steps:
       - name: Confirm deployment
